@@ -1,28 +1,29 @@
 CREATE TABLE host (
-	id INT PRIMARY KEY,
-	host_name_desc TEXT
+	host_number INT PRIMARY KEY,
+	host_title TEXT
 );
 
 CREATE TABLE room_type (
-	id INT PRIMARY KEY,
+	room_type_id INT PRIMARY KEY,
 	room_type TEXT
 );
 
 CREATE TABLE borough (
-	id INT PRIMARY KEY,
-	neighbourhood_group TEXT
+	borough_id INT PRIMARY KEY,
+	borough TEXT
 );
 
 CREATE TABLE neighbourhood (
-	id INT PRIMARY KEY,
+	neighbourhood_id INT PRIMARY KEY,
 	neighbourhood TEXT,
-	neighbourhood_group_id INT
-	FOREIGN KEY (neighbourhood_group_id) REFERENCES neighbourhood_group(id)
+	borough_id INT,
+	FOREIGN KEY (borough_id) REFERENCES borough(borough_id)
 );
 
 CREATE TABLE listing (
 	id INT PRIMARY KEY,
-	listing_name TEXT,
+	name TEXT,
+    host_number INT,
 	latitude DECIMAL,
 	longitude DECIMAL,
 	price DECIMAL,
@@ -31,11 +32,10 @@ CREATE TABLE listing (
 	last_review DATE,
     reviews_per_month DECIMAL,
     availability_365 INT,
-    borough_id INT,
-    neighborhood_id INT,
-    room_type_id INT
-    FOREIGN KEY (borough_id) REFERENCES borough(id)
-    FOREIGN KEY (neighbourhood_id) REFERENCES neighbourhood(id)
-    FOREIGN KEY (room_type_id) REFERENCES room_type(id)
+    neighbourhood_id INT,
+    room_type_id INT,
+    FOREIGN KEY (neighbourhood_id) REFERENCES neighbourhood(neighbourhood_id),
+    FOREIGN KEY (room_type_id) REFERENCES room_type(room_type_id),
+    FOREIGN KEY (host_number) REFERENCES host(host_number)
 	)
  
