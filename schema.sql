@@ -37,5 +37,5 @@ CREATE TABLE listing (
     FOREIGN KEY (neighbourhood_id) REFERENCES neighbourhood(neighbourhood_id),
     FOREIGN KEY (room_type_id) REFERENCES room_type(room_type_id),
     FOREIGN KEY (host_number) REFERENCES host(host_number)
-	)
+	);
  
