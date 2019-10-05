@@ -24,7 +24,7 @@ JOIN borough b ON (n.borough_id = b.borough_id)
 JOIN host h ON (l.host_number = h.host_number)
 JOIN room_type rt ON (l.room_type_id = rt.room_type_id)
 
-LEFT JOIN (
+JOIN (
 	SELECT 
 	host_number,
 	count(id) as calculated_host_listings_count
@@ -32,5 +32,5 @@ LEFT JOIN (
 	FROM listing
 	
 	GROUP BY host_number
-) hc ON (hc.host_number = l.host_number)
+) hc ON (l.host_number = hc.host_number)
 
